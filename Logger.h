@@ -3,27 +3,42 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <chrono>
 #include <iomanip>
 
 class Logger {
 public:
-    enum class LogType {
-        ERROR,
+    enum class LogLevel {
+        DEBUG,
+        INFO,
         WARNING,
-        PROCESS
+        ERROR
     };
 
-    static void newLog(const std::string& message);
-    static void newWarning(const std::string& message);
-    static void newError(const std::string& message);
+    static Logger& getInstance();
+
+    void setLogLevel(LogLevel level);
+    void logToFile(const std::string& filename);
+
+    void debug(const std::string& message);
+    void info(const std::string& message);
+    void warning(const std::string& message);
+    void error(const std::string& message);
 
 private:
-    static void logMessage(LogType type, const std::string& message);
-    static std::string getMessage(LogType type);
-    static std::string currentTime();
-};
+    Logger();
+    ~Logger();
 
-#include "Logger.cpp"
+    Logger(const Logger&) = delete;
+    Logger& operator=(const Logger&) = delete;
+
+    void log(LogLevel level, const std::string& message);
+    std::string levelToString(LogLevel level);
+    std::string getCurrentTime();
+
+    LogLevel currentLevel;
+    std::ofstream logFile;
+};
 
 #endif // LOGGER_H

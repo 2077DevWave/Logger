@@ -1,48 +1,71 @@
 #include "Logger.h"
+#include <sstream>
+#include <iostream>
 
-void Logger::newLog(const std::string& message) {
-    logMessage(LogType::PROCESS, message);
-}
+Logger::Logger() : currentLevel(LogLevel::INFO) {}
 
-void Logger::newWarning(const std::string& message) {
-    logMessage(LogType::WARNING, message);
-}
-
-void Logger::newError(const std::string& message) {
-    logMessage(LogType::ERROR, message);
-}
-
-void Logger::logMessage(LogType type, const std::string& message) {
-    std::string color_code;
-    switch (type) {
-        case LogType::ERROR: color_code = "\033[31m"; break; // Red
-        case LogType::WARNING: color_code = "\033[33m"; break; // Yellow
-        default: color_code = "\033[0m"; // Reset
-    }
-
-    std::string prefix = currentTime() + " " + getMessage(type) + message + "\n";
-    std::cout << color_code << prefix << "\033[0m";
-    std::cout.flush();
-}
-
-std::string Logger::getMessage(LogType type) {
-    switch (type) {
-        case LogType::ERROR: return "Error: ";
-        case LogType::WARNING: return "Warning: ";
-        case LogType::PROCESS: return "Process log: ";
-        default: return "";
+Logger::~Logger() {
+    if (logFile.is_open()) {
+        logFile.close();
     }
 }
 
-std::string Logger::currentTime() {
+Logger& Logger::getInstance() {
+    static Logger instance;
+    return instance;
+}
+
+void Logger::setLogLevel(LogLevel level) {
+    currentLevel = level;
+}
+
+void Logger::logToFile(const std::string& filename) {
+    if (logFile.is_open()) {
+        logFile.close();
+    }
+    logFile.open(filename, std::ios::app);
+}
+
+void Logger::debug(const std::string& message) {
+    log(LogLevel::DEBUG, message);
+}
+
+void Logger::info(const std::string& message) {
+    log(LogLevel::INFO, message);
+}
+
+void Logger::warning(const std::string& message) {
+    log(LogLevel::WARNING, message);
+}
+
+void Logger::error(const std::string& message) {
+    log(LogLevel::ERROR, message);
+}
+
+void Logger::log(LogLevel level, const std::string& message) {
+    if (level >= currentLevel) {
+        std::string logMessage = getCurrentTime() + " [" + levelToString(level) + "] " + message;
+        std::cout << logMessage << std::endl;
+        if (logFile.is_open()) {
+            logFile << logMessage << std::endl;
+        }
+    }
+}
+
+std::string Logger::levelToString(LogLevel level) {
+    switch (level) {
+        case LogLevel::DEBUG:   return "DEBUG";
+        case LogLevel::INFO:    return "INFO";
+        case LogLevel::WARNING: return "WARNING";
+        case LogLevel::ERROR:   return "ERROR";
+        default:                return "UNKNOWN";
+    }
+}
+
+std::string Logger::getCurrentTime() {
     auto now = std::chrono::system_clock::now();
-    auto in_time_t = std::chrono::system_clock::to_time_t(now);
-    std::tm buf;
-    localtime_r(&in_time_t, &buf);
-    std::ostringstream ss;
-    ss << "[" << buf.tm_year + 1900 << "\\" << buf.tm_mon + 1 << "\\" << buf.tm_mday 
-       << " | " << std::setw(2) << std::setfill('0') << buf.tm_hour << ":"
-       << std::setw(2) << std::setfill('0') << buf.tm_min << ":"
-       << std::setw(2) << std::setfill('0') << buf.tm_sec << "]";
+    auto time_t = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&time_t), "%Y-%m-%d %H:%M:%S");
     return ss.str();
 }

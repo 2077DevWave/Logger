@@ -1,3 +1,5 @@
+[![C++ CI](https://github.com/2077DevWave/Logger/actions/workflows/test.yml/badge.svg)](https://github.com/2077DevWave/Logger/actions/workflows/test.yml)
+
 # Logger Library (C++)
 
 A simple yet powerful C++ logging library that provides functionality for log levels, timestamps, and file logging. It's designed as a singleton to ensure a single logging instance throughout your application.

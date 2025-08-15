@@ -1,6 +1,40 @@
-2025-08-15 10:37:38 [DEBUG] This is a debug message.
-2025-08-15 10:37:38 [INFO] This is an info message.
-2025-08-15 10:37:38 [WARNING] This is a warning message.
-2025-08-15 10:37:38 [ERROR] This is an error message.
-2025-08-15 10:37:38 [WARNING] This is another warning message.
-2025-08-15 10:37:38 [ERROR] This is another error message.
+2025-08-15 11:28:35 [DEBUG] dbg1
+2025-08-15 11:28:35 [INFO] info1
+2025-08-15 11:28:46 [DEBUG] dbg1
+2025-08-15 11:28:46 [INFO] info1
+2025-08-15 11:28:46 [DEBUG] async thread 0
+2025-08-15 11:28:46 [DEBUG] async thread 2
+2025-08-15 11:28:46 [DEBUG] async thread 3
+2025-08-15 11:28:46 [INFO] async thread info 3
+2025-08-15 11:28:46 [INFO] async thread info 2
+2025-08-15 11:28:46 [INFO] async thread info 0
+2025-08-15 11:28:46 [DEBUG] async thread 1
+2025-08-15 11:28:46 [DEBUG] async thread 4
+2025-08-15 11:28:46 [DEBUG] async thread 5
+2025-08-15 11:28:46 [INFO] async thread info 1
+2025-08-15 11:28:46 [DEBUG] async thread 7
+2025-08-15 11:28:46 [INFO] async thread info 7
+2025-08-15 11:28:46 [DEBUG] async thread 6
+2025-08-15 11:28:46 [INFO] async thread info 4
+2025-08-15 11:28:46 [INFO] async thread info 6
+2025-08-15 11:28:46 [INFO] async thread info 5
+2025-08-15 11:28:46 [INFO] done
+2025-08-15 11:29:10 [DEBUG] dbg1
+2025-08-15 11:29:10 [INFO] info1
+2025-08-15 11:29:10 [DEBUG] async thread 1
+2025-08-15 11:29:10 [DEBUG] async thread 0
+2025-08-15 11:29:10 [DEBUG] async thread 2
+2025-08-15 11:29:10 [INFO] async thread info 2
+2025-08-15 11:29:10 [DEBUG] async thread 3
+2025-08-15 11:29:10 [INFO] async thread info 3
+2025-08-15 11:29:10 [DEBUG] async thread 4
+2025-08-15 11:29:10 [INFO] async thread info 0
+2025-08-15 11:29:10 [DEBUG] async thread 7
+2025-08-15 11:29:10 [DEBUG] async thread 6
+2025-08-15 11:29:10 [INFO] async thread info 7
+2025-08-15 11:29:10 [INFO] async thread info 6
+2025-08-15 11:29:10 [INFO] async thread info 1
+2025-08-15 11:29:10 [DEBUG] async thread 5
+2025-08-15 11:29:10 [INFO] async thread info 5
+2025-08-15 11:29:10 [INFO] async thread info 4
+2025-08-15 11:29:10 [INFO] done

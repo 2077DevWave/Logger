@@ -86,7 +86,7 @@ void Logger::asyncWorker()
             queue.pop();
         }
         // write outside lock
-        std::string out = getCurrentTime() + " [" + levelToString(msg.level) + "] " + msg.text.substr(0, msg.text.find(" ") + 0); // Actually logMessage already contains timestamp, reuse full text
+        // logMessage already contains timestamp and level, just use it directly
         std::string logMessage = msg.text;
         std::cout << logMessage << std::endl;
         if (logFile.is_open())

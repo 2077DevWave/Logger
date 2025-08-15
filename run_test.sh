@@ -7,7 +7,7 @@ set -e
 
 # Compile the C++ source files
 echo "Compiling the logger..."
-g++ -std=c++11 -g test.cpp Logger.cpp -o test
+g++ -std=c++11 -g test.cpp Logger.cpp -o test -pthread
 
 # Run the compiled test executable
 echo "Running the test..."

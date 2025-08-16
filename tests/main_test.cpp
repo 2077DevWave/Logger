@@ -2,7 +2,7 @@
 
 void run_logger_tests() {
     Logger& logger = Logger::getInstance();
-    logger.logToFile("test_app.log");
+    logger.logToFile("tests/test_app.log");
 
     // Test 1: Test all log levels
     logger.setLogLevel(Logger::LogLevel::DEBUG);
